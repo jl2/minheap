@@ -47,6 +47,11 @@
   (index 0 :type array-index)
   (data nil))
 
+(defmethod print-object  ((obj node) stream)
+  (print-unreadable-object (obj stream :type t :identity t)
+    (format stream "~4I~:_key: ~A~:_" (slot-value obj 'key))))
+
+
 (defclass binary-heap ()
   ((array :accessor bin-heap-array
           :type (vector (or null node))

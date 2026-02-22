@@ -50,6 +50,10 @@
   (parent nil :type (or null node))
   (rank 0 :type (integer 0 #.(floor (log most-positive-fixnum 2)))))
 
+(defmethod print-object  ((obj node) stream)
+  (print-unreadable-object (obj stream :type t :identity t)
+    (format stream "~4I~:_key: ~A _rank: ~A~:_" (slot-value obj 'key) (slot-value obj 'rank))))
+
 (defclass rank-pairing-heap ()
   ((size :initform 0 :initarg :size
          :type (integer 0 *)

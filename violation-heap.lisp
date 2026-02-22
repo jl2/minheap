@@ -52,6 +52,11 @@
   (rank 0 :type (integer 0 #.most-positive-fixnum))
   (goodness 0 :type (integer 0 #.most-positive-fixnum)))
 
+(defmethod print-object  ((obj node) stream)
+  (print-unreadable-object (obj stream :type t :identity t)
+    (format stream "~4I~:_key: ~A~:_" (slot-value obj 'key))))
+
+
 (defclass violation-heap ()
   ((size :initform 0 :initarg :size
          :type (integer 0 *))

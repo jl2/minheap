@@ -46,6 +46,11 @@
   (sibling nil :type (or null node))
   (parent nil  :type (or null node)))
 
+(defmethod print-object  ((obj node) stream)
+  (print-unreadable-object (obj stream :type t :identity t)
+    (format stream "~4I~:_key: ~A~:_" (slot-value obj 'key))))
+
+
 (defclass pairing-heap ()
   ((size :initform 0 :initarg :size
          :type (integer 0 *))

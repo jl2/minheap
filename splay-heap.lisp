@@ -44,6 +44,11 @@
   (left nil :type (or null splay-node))
   (right nil :type (or null splay-node)))
 
+(defmethod print-object  ((obj splay-node) stream)
+  (print-unreadable-object (obj stream :type t :identity t)
+    (format stream "~4I~:_key: ~A~:_" (slot-value obj 'segment) )))
+
+
 (declaim (inline segment<))
 (defun segment< (a b)
   (declare (type (or null fixnum) a b)
